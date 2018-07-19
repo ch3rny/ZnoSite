@@ -16,3 +16,4 @@ class ThemeViewSet(viewsets.ModelViewSet):
     serializer_class = ThemeSerializer
     filter_backends = [DjangoFilterBackend]
     filter_fields = ['name']
+
