@@ -24,7 +24,7 @@ SECRET_KEY = '#l^)b!td$6nacy$gn#j#$ze%@m&!zdhwg94l-nav-n5^vljh%-'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com', 'school12.net']
 
 # Application definition
 
@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'physics.apps.PhysicsConfig',
     'rest_framework',
     'corsheaders',
+    'storages',
+
 
 ]
 
@@ -156,3 +158,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+DEFAULT_FILE_STORAGE = 'storages.backends.ftp.FTPStorage'
+FTP_STORAGE_LOCATION = 'ftp://electronik:Gfhjkm2013flvbyf@school12.net:21'

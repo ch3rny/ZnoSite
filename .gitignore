@@ -5,3 +5,5 @@ venv2
 db.sqlite3
 .DS_Store
 local_settings.py
+/static/*
+/staticfiles/*

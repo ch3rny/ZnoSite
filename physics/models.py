@@ -1,5 +1,7 @@
 from django.db import models
 import datetime
+from storages.backends.ftp import FTPStorage
+fs = FTPStorage()
 
 
 class Task (models.Model):
@@ -25,7 +27,7 @@ class Task (models.Model):
     zno_type = models.IntegerField(choices=ZNO_CHOICES, default='1',verbose_name="Тип ЗНО")
     theme = models.ForeignKey('Theme', on_delete=models.CASCADE, verbose_name="Розділ")
     type = models.IntegerField(choices=TYPE_CHOICES, default='1', verbose_name="Тип завдання")
-    task_image = models.ImageField(upload_to='uploads', null=False, blank=False, verbose_name="Завдання")
+    task_image = models.ImageField(upload_to='uploads', null=False, blank=False, verbose_name="Завдання", storage=fs)
     correct_answer = models.CharField(max_length=10,verbose_name="Правильна відповідь")
 
     class Meta:
