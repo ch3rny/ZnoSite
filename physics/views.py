@@ -12,7 +12,7 @@ class TaskViewSet(viewsets.ModelViewSet):
 
 
 class ThemeViewSet(viewsets.ModelViewSet):
-    queryset = Theme.objects.all()
+    queryset = Theme.objects.all().order_by('id')
     serializer_class = ThemeSerializer
     filter_backends = [DjangoFilterBackend]
     filter_fields = ['name']

@@ -3,5 +3,13 @@ from .models import Theme, Task
 # Register your models here.
 
 
-admin.site.register(Task)
+class TaskAdmin(admin.ModelAdmin):
+    list_display = ('id', 'year', 'number', 'theme', 'zno_type', 'type')
+    list_filter = ('year', 'theme', 'zno_type', 'type')
+
+
+admin.site.register(Task, TaskAdmin)
 admin.site.register(Theme)
+
+
+
