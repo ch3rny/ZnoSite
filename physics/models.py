@@ -28,7 +28,7 @@ class Task (models.Model):
     theme = models.ForeignKey('Theme', on_delete=models.CASCADE, verbose_name="Розділ")
     type = models.IntegerField(choices=TYPE_CHOICES, default='1', verbose_name="Тип завдання")
     task_image = models.ImageField(upload_to='uploads', null=False, blank=False, verbose_name="Завдання", storage=fs)
-    correct_answer = models.CharField(max_length=8,verbose_name="Правильна відповідь")
+    correct_answer = models.CharField(max_length=12,verbose_name="Правильна відповідь")
 
     class Meta:
         verbose_name = 'Завдання'
