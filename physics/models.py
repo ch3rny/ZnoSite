@@ -9,7 +9,7 @@ class Task (models.Model):
     for r in range(2007, datetime.datetime.now().year+1):
         YEAR_CHOICES.append((r, r))
     NUMBER_CHOICES = []
-    for r in range(1, 38):
+    for r in range(1, 39):
         NUMBER_CHOICES.append((r, r))
     TYPE_CHOICES = (
         (1, 'З однією правильною відповіддю'),
