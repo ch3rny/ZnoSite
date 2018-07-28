@@ -5,7 +5,7 @@ from url_filter.integrations.drf import DjangoFilterBackend
 
 
 class TaskViewSet(viewsets.ModelViewSet):
-    queryset = Task.objects.all()
+    queryset = Task.objects.all().order_by('number')
     serializer_class = TaskSerializer
     filter_backends = [DjangoFilterBackend]
     filter_fields = ['year', 'theme', 'type', 'zno_type']
