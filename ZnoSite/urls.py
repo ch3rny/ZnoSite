@@ -15,10 +15,22 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework import routers
+from physics import urls as physicsUrls
+from feedback import urls as feedbackUrls
 
+
+routeLists = [
+    physicsUrls.routeList,
+    feedbackUrls.routeList,
+]
+
+router = routers.DefaultRouter()
+for routeList in routeLists:
+    for route in routeList:
+        router.register(route[0], route[1])
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('physics.urls'))
-
+    path('api/', include(router.urls)),
 ]
