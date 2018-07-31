@@ -17,4 +17,4 @@ class Review(models.Model):
         verbose_name_plural = 'Відгуки'
 
     def __str__(self):
-        return self.created_time
+        return self.author+' '+self.text
