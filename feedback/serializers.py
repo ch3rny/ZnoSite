@@ -3,7 +3,6 @@ from .models import Review
 
 
 class ReviewSerializer(serializers.ModelSerializer):
-    attachment = serializers.FileField(use_url=False, allow_null=True, label='Вкладення')
 
     class Meta:
         model = Review
