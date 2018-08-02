@@ -9,7 +9,7 @@ class ThemeSerializer(serializers.ModelSerializer):
 
 
 class TaskSerializer(serializers.ModelSerializer):
-    task_image = serializers.ImageField(use_url=False)
+    task_image = serializers.ImageField(use_url=False, label='Завдання')
 
     class Meta:
         model = Task
