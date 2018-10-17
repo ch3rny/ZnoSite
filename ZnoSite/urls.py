@@ -19,7 +19,6 @@ from rest_framework import routers
 from physics import urls as physicsUrls
 from feedback import urls as feedbackUrls
 
-
 routeLists = [
     physicsUrls.routeList,
     feedbackUrls.routeList,
@@ -33,4 +32,7 @@ for routeList in routeLists:
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
+    path('auth/', include('authentication.urls')),
+    path('accounts/', include('allauth.urls'))
+
 ]
