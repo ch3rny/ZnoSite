@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Theme, Task
+from .models import Theme, Task, Bundle
 # Register your models here.
 
 
@@ -10,6 +10,6 @@ class TaskAdmin(admin.ModelAdmin):
 
 admin.site.register(Task, TaskAdmin)
 admin.site.register(Theme)
-
+admin.site.register(Bundle)
 
 

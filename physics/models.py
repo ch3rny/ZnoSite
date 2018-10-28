@@ -1,6 +1,10 @@
 from django.db import models
 import datetime
 from storages.backends.ftp import FTPStorage
+from django.contrib.auth.models import User
+from django.utils import timezone
+
+
 fs = FTPStorage()
 
 
@@ -49,5 +53,23 @@ class Theme(models.Model):
     class Meta:
         verbose_name = 'Тема'
         verbose_name_plural = 'Теми'
+
+    def __str__(self):
+        return self.name
+
+
+class Bundle(models.Model):
+    name = models.CharField(max_length=75, verbose_name='Підбірка')
+    cover = models.ImageField(upload_to='bundles', blank=True, verbose_name="Обкладинка", storage=fs)
+    tasks = models.ManyToManyField(Task, verbose_name="Завдання", blank=True)
+    shared = models.ManyToManyField(User, verbose_name="Доступно для", blank=True)
+    author_id = models.IntegerField(verbose_name='Автор', default='3')
+    created_date = models.DateTimeField(default=timezone.now, verbose_name="Дата створення")
+    edited_date = models.DateTimeField(default=timezone.now, verbose_name="Останні зміни")
+
+    class Meta:
+        verbose_name= 'Підбірка'
+        verbose_name_plural = 'Підбірки'
+
     def __str__(self):
         return self.name

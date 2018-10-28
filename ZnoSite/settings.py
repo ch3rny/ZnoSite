@@ -54,6 +54,9 @@ INSTALLED_APPS = [
 
 SITE_ID = 3
 
+JWT_AUTH = {
+    'JWT_ALLOW_REFRESH': True,
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
