@@ -1,6 +1,6 @@
 from rest_framework import viewsets
-from .serializers import TaskSerializer, ThemeSerializer, BundleSerializer
-from .models import Task, Theme, Bundle
+from .serializers import TaskSerializer, ThemeSerializer, BundleSerializer, TestAnswerSerializer
+from .models import Task, Theme, Bundle, TestAnswer
 from url_filter.integrations.drf import DjangoFilterBackend
 
 
@@ -23,3 +23,8 @@ class BundleViewSet(viewsets.ModelViewSet):
     serializer_class = BundleSerializer
     filter_backends = [DjangoFilterBackend]
     filter_fields = ['author_id', 'shared']
+
+
+class TestAnswerViewSet(viewsets.ModelViewSet):
+    queryset = TestAnswer.objects.all().order_by('-date')
+    serializer_class = TestAnswerSerializer

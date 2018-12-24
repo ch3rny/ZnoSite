@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Task, Theme, Bundle
+from .models import Task, Theme, Bundle, TestAnswer
 
 
 class ThemeSerializer(serializers.ModelSerializer):
@@ -23,3 +23,10 @@ class BundleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Bundle
         fields = ('id', 'url', 'name', 'cover', 'author_id', 'created_date', 'edited_date', 'tasks', 'shared')
+
+
+class TestAnswerSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = TestAnswer
+        fields = ('id', 'url', 'user', 'task', 'theme', 'user_answer', 'is_true', 'date')
