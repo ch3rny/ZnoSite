@@ -26,6 +26,10 @@ class BundleSerializer(serializers.ModelSerializer):
 
 
 class TestAnswerSerializer(serializers.ModelSerializer):
+    theme = serializers.SlugRelatedField(
+        slug_field='name',
+        queryset=Theme.objects.all().order_by('id')
+     )
 
     class Meta:
         model = TestAnswer

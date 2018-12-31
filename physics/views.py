@@ -28,3 +28,5 @@ class BundleViewSet(viewsets.ModelViewSet):
 class TestAnswerViewSet(viewsets.ModelViewSet):
     queryset = TestAnswer.objects.all().order_by('-date')
     serializer_class = TestAnswerSerializer
+    filter_backends = [DjangoFilterBackend]
+    filter_fields = ['user']

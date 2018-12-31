@@ -60,7 +60,7 @@ class Theme(models.Model):
 
 class Bundle(models.Model):
     name = models.CharField(max_length=75, verbose_name='Підбірка')
-    cover = models.ImageField(upload_to='bundles', blank=True, verbose_name="Обкладинка", storage=fs)
+    cover = models.ImageField(upload_to='bundles', default='bundles/bundle.jpg', verbose_name="Обкладинка", storage=fs)
     tasks = models.ManyToManyField(Task, verbose_name="Завдання", blank=True)
     shared = models.ManyToManyField(User, verbose_name="Доступно для", blank=True)
     author_id = models.IntegerField(verbose_name='Автор', default='3')
@@ -76,9 +76,15 @@ class Bundle(models.Model):
 
 
 class TestAnswer(models.Model):
-    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
-    task = models.ForeignKey(Task, on_delete=models.CASCADE)
-    theme = models.CharField(max_length=200, default='')
-    user_answer = models.CharField(max_length=12, blank=True)
-    is_true = models.BooleanField()
-    date = models.DateTimeField(default=timezone.now)
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, verbose_name='Користувач')
+    task = models.ForeignKey(Task, on_delete=models.CASCADE, verbose_name='Завдання')
+    theme = models.ForeignKey(Theme, on_delete=models.CASCADE, verbose_name='Тема')
+    user_answer = models.CharField(max_length=12, blank=True, verbose_name='Відповідь користувача')
+    is_true = models.BooleanField(verbose_name='Правильна відповідь')
+    date = models.DateTimeField(default=timezone.now, verbose_name='Дата відповіді')
+
+    class Meta:
+        verbose_name_plural = "Відповіді користувачів"
+
+    def __str__(self):
+        return str(self.task.id)+'-'+str(self.user)+'('+str(self.date)+')'

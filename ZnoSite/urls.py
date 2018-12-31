@@ -18,6 +18,7 @@ from django.urls import path, include
 from rest_framework import routers
 from physics import urls as physicsUrls
 from feedback import urls as feedbackUrls
+from rest_framework.documentation import include_docs_urls
 
 routeLists = [
     physicsUrls.routeList,
@@ -33,6 +34,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
     path('auth/', include('authentication.urls')),
-    path('accounts/', include('allauth.urls'))
-
+    path('accounts/', include('allauth.urls')),
+    path('docs/', include_docs_urls(title='My API title'))
 ]
