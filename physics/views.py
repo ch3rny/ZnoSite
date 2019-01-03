@@ -1,5 +1,5 @@
 from rest_framework import viewsets
-from .serializers import TaskSerializer, ThemeSerializer, BundleSerializer, TestAnswerSerializer
+from .serializers import *
 from .models import Task, Theme, Bundle, TestAnswer
 from url_filter.integrations.drf import DjangoFilterBackend
 
@@ -28,5 +28,12 @@ class BundleViewSet(viewsets.ModelViewSet):
 class TestAnswerViewSet(viewsets.ModelViewSet):
     queryset = TestAnswer.objects.all().order_by('-date')
     serializer_class = TestAnswerSerializer
+    filter_backends = [DjangoFilterBackend]
+    filter_fields = ['user']
+
+
+class ReadTestAnswerViewSet(viewsets.ModelViewSet):
+    queryset = TestAnswer.objects.all().order_by('-date')
+    serializer_class = ReadTestSerializer
     filter_backends = [DjangoFilterBackend]
     filter_fields = ['user']

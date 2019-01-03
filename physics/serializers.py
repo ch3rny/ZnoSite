@@ -34,3 +34,17 @@ class TestAnswerSerializer(serializers.ModelSerializer):
     class Meta:
         model = TestAnswer
         fields = ('id', 'url', 'user', 'task', 'theme', 'user_answer', 'is_true', 'date')
+
+
+class ReadTestSerializer(serializers.ModelSerializer):
+    theme = serializers.SlugRelatedField(
+        slug_field='name',
+        queryset=Theme.objects.all().order_by('id')
+     )
+    user = serializers.PrimaryKeyRelatedField(read_only=True)
+    task = TaskSerializer()
+
+    class Meta:
+        model = TestAnswer
+        fields = ('id', 'url', 'user', 'task', 'theme', 'user_answer', 'is_true', 'date')
+        depth = 1
